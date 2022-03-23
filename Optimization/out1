@@ -1,0 +1,38 @@
+Eliminating common subexpression
+------------------------------------------------Pass 2------------------------------------------------
+-------------------------------------------Constant Folding-------------------------------------------
+
+	=	3	NULL	a
+	=	8	NULL	b
+	=	42	NULL	c
+	=	7	NULL	p
+	=	11	NULL	c
+	=	11	NULL	g
+	*	11	e	d
+	=	8	NULL	a
+	=	10	NULL	f
+	if	x	NULL	L0
+	+	8	e	a
+	=	5	NULL	b
+
+--------------------------------------Constant folded expression--------------------------------------
+
+	a	=	3
+	b	=	8
+	c	=	42
+	p	=	7
+	c	=	11
+	g	=	11
+	d	=	11	*	e
+	a	=	8
+	f	=	10
+	a	=	8	+	e
+	b	=	5
+unused variables counter
+
+
+After dead code elimination - 
+------------------------------
+d = 11 * e
+if x goto L0
+a = 8 + e

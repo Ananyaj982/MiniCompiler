@@ -1,0 +1,62 @@
+------------------------------------------------Pass 2------------------------------------------------
+-------------------------------------------Constant Folding-------------------------------------------
+
+	=	1	NULL	b
+	Label	NULL	NULL	L0
+	>=	x	y	T0
+	not	T0	NULL	T1
+	if	T1	NULL	L1
+	+	x	2	T2
+	=	T2	NULL	b
+	goto	NULL	NULL	L0
+	Label	NULL	NULL	L1
+	<	x	y	T3
+	not	T3	NULL	T4
+	if	T4	NULL	L3
+	=	33	NULL	gtr
+	==	a	20	T5
+	not	T5	NULL	T6
+	if	T6	NULL	L3
+	=	444	NULL	gtr
+	=	10	NULL	x
+	=	20	NULL	y
+	Label	NULL	NULL	L3
+
+--------------------------------------Constant folded expression--------------------------------------
+
+	b	=	1
+	L0	:
+	T0	=	x	>=	y
+T1 = not T0
+	T2	=	x	+	2
+	b	=	T2
+goto L0
+	L1	:
+	T3	=	x	<	y
+T4 = not T3
+	gtr	=	33
+	T5	=	a	==	20
+T6 = not T5
+	gtr	=	444
+	x	=	10
+	y	=	20
+	L3	:
+
+
+--------------------------------------Assembly Code--------------------------------------
+
+
+
+After dead code elimination - 
+------------------------------
+T0 = x >= y
+T1 = not T0
+if T1 goto L1
+T2 = x + 2
+goto L0
+T3 = x < y
+T4 = not T3
+if T4 goto L3
+T5 = a == 20
+T6 = not T5
+if T6 goto L3
