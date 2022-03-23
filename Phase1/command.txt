@@ -1,0 +1,4 @@
+lex lexical.l
+yacc -d syntax.y
+gcc y.tab.c -ll -w
+./a.out < test1.cpp
